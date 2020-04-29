@@ -8,7 +8,7 @@ from faker import Faker
 
 
 def get_patents_list(word, App_or_key=True):
-    '''google 专利下载专利文件及生产专利清单，默认申请人'''
+    '''google 专利下载专利文件及 生成专利清单，默认申请人'''
     keys = f"assignee={word}" if App_or_key else f"q={word}"  # inventor=任
     main_url = r'https://patents.google.com/?{0}&language=CHINESE&num=50'.format(keys)
     option = webdriver.ChromeOptions()
