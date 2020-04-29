@@ -5,7 +5,7 @@ import img2pdf,zipfile
 
 '''
 @FileName	:   cpc_img2pdf.py
-@Created    :   Oct,2018
+@Created  :   Oct,2018
 @Author		:   goonhope@gmail.com
 @Function	:   专利通知书批量重命名，转pdf文件—
                         CPC直接导出通知文件解压，读取list.xml 
@@ -126,7 +126,7 @@ def delete(location):
 
 def main():
     start = time.time()
-    zip_file = input("输入路径：")
+    zip_file = input("输入通知文件压缩包路径：")
     print("it\'s running...")
     n = rename(zip_file)
     location = os.path.splitext(zip_file)[0]
