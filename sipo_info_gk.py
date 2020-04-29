@@ -83,7 +83,6 @@ def main():
     cd = FoxDriver(driver)
     try:
         cd.go(ids)
-        pass
     except Exception as e:
         print(str(e))
 
