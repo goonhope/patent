@@ -1,5 +1,5 @@
 @echo off
-echo 需安装ImagicMagick & ghostscript
+echo 需安装ImageMagick & ghostscript
 for %%i in (*.pdf) do magick convert -density 300 -quality 100 %%i %%~ni_%03d.jpg
 echo sleep 5
 ping 8.8.8.8 -n 10 > nul
