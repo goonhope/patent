@@ -11,3 +11,9 @@
 
 4.cpc_img2pdf.py
 专利通知书批量导出重命名、转PDF文件
+
+5.cpc_appendix.py
+CPC附件图片处理成合格上传要求规格
+
+6.cpc_appendix.bat(dos命令版)
+CPC附件图片处理成合格上传要求规格，与5功能一样
