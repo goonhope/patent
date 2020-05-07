@@ -68,7 +68,7 @@ class FoxDriver(object):
             time.sleep(8)  # 手动输入验证麻烦
             self.click_by_css()
             if self.driver.current_url != url : break
-        self.click_by_css("#agreeid",1)
+        self.click_by_css("#agreeid",slp=1)
         self.click_by_css("#goBtn")
         self.input_key(ids[2], r"#select-key\3a shenqingrxm")
         self.click_by_css("#query")
