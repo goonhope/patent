@@ -50,13 +50,17 @@ def xf(path,delta=True):
             f.close()
             for root, dirs, files in os.walk(sub_dir, topdown=False):
                 for name in files:
-                    old = os.path.join(root, name)
-                    newname = os.path.join(root, name.encode('cp437').decode("GBK"))
-                    os.renames(old, newname)   # 修正编码
+                    gname = name.encode('cp437').decode("GBK")
+                    if name != gname:
+                        old = os.path.join(root, name)
+                        newname = os.path.join(root, name.encode('cp437').decode("GBK"))
+                        os.renames(old, newname)   # 修正编码
                 for dir in dirs:
-                    olddir = os.path.join(root, dir)
-                    newnamedir = os.path.join(root, dir.encode('cp437').decode("GBK"))
-                    os.renames(olddir, newnamedir)   # 修正编码
+                    gdir = dir.encode('cp437').decode("GBK")
+                    if dir != gdir:
+                        olddir = os.path.join(root, dir)
+                        newnamedir = os.path.join(root, dir.encode('cp437').decode("GBK"))
+                        os.renames(olddir, newnamedir)   # 修正编码
             os.remove(os.path.join(path, rar))  if delta else None  # 删除rar
 
 
@@ -148,12 +152,12 @@ def appy(zipfile):
 
 
 @timer
-def grant(zipfile):
+def grant(zipfile,delta=False):
     '''授权专利证书批量重命名'''
     location = os.path.splitext(zipfile)[0]
-    xf(zipfile)
+    xf(zipfile, delta)
     time.sleep(1)
-    dirs = [x for x in os.listdir(location) if x.startswith("144O")]
+    dirs = [x for x in os.listdir(location) if x.startswith("14")]
     num = 0
     for dir in dirs:
         xml_file = os.path.join(location, f"{dir}\\list.xml")
@@ -170,7 +174,7 @@ def grant(zipfile):
                 num += 1
     [shutil.rmtree(os.path.join(location,x)) for x in dirs]
     os.system("start %s" % location)
-    return location,num
+    return location, num
 
 
 if __name__ == '__main__':
