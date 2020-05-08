@@ -124,18 +124,17 @@ def delete(location):
 
 def timer():
     '''默认计时装饰器'''
-    def inner(func):
-        def wrapper(*args, **kwargs):
-            start = time.time()
-            location, n = func(*args, **kwargs)
-            print(f"@{func.__name__}:\t[Time:{time.time() - start : 0.3f}s]\t[归档数量:{n}]")
-            print("\n".join(os.listdir(location)))
-            return
-        return wrapper
-    return inner
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        location, n = func(*args, **kwargs)
+        print(f"@{func.__name__}:\t[Time:{time.time() - start : 0.3f}s]\t[归档数量:{n}]")
+        print("\n".join(os.listdir(location)))
+        return
+    return wrapper
 
 
-@timer()
+
+@timer
 def appy(zipfile):
     xf(zipfile)
     time.sleep(1)
@@ -148,7 +147,7 @@ def appy(zipfile):
     return location,n
 
 
-@timer()
+@timer
 def grant(zipfile):
     '''授权专利证书批量重命名'''
     location = os.path.splitext(zipfile)[0]
