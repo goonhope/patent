@@ -171,10 +171,10 @@ def grant(zipfile):
                 num += 1
     [shutil.rmtree(os.path.join(location,x)) for x in dirs]
     os.system("start %s" % location)
-    return location, num
+    return location,num
 
 
-def main():
+if __name__ == '__main__':
     zipfile = input("输入导出zip文件路径：").strip()
     # appy(zipfile)  # 申请文件归档
     grant(zipfile) # 证书文件归档
