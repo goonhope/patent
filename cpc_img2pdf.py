@@ -91,7 +91,7 @@ def rename(location):
                 os.renames(old, newname)
                 n += 1
                 shutil.move(newname, location)
-    return n
+    return location,n
 
 
 def tiftopdf(location):
