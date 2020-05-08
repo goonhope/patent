@@ -62,8 +62,6 @@ def xf(path,delta=True):
 
 def rename(location):
     '''专利通知书图片重命名，并移动到根目录——单压缩包.'''
-    xf(location)
-    location = os.path.splitext(location)[0]
     dirs = [x for x in os.listdir(location) if "GA" in x]
     n = 1
     #  获取专利l信息list
@@ -124,18 +122,59 @@ def delete(location):
     return None
 
 
-def main():
-    start = time.time()
-    zip_file = input("输入通知文件压缩包路径：")
-    print("it\'s running...")
-    n = rename(zip_file)
-    location = os.path.splitext(zip_file)[0]
-    delete(location)  # 删除非tif, pdf文件
+def timer():
+    '''默认计时装饰器'''
+    def inner(func):
+        def wrapper(*args, **kwargs):
+            start = time.time()
+            location, n = func(*args, **kwargs)
+            print(f"@{func.__name__}:\t[Time:{time.time() - start : 0.3f}s]\t[归档数量:{n}]")
+            print("\n".join(os.listdir(location)))
+            return
+        return wrapper
+    return inner
+
+
+@timer()
+def appy(zipfile):
+    xf(zipfile)
+    time.sleep(1)
+    location = os.path.splitext(zipfile)[0]
+    n = rename(location)
+    delete(location)  # 删除非tif文件
     tiftopdf(location)  # 转成pdf文件
-    done = time.time()
-    print("用时{0:.2f}s，完成{1}件归档，清单如下：".format(done - start, n))
-    print("\n".join(os.listdir(location)))
+    # delete(location,"pdf")  # 删除非pdf文件
+    os.system("start %s" % location)
+    return location,n
 
 
-if __name__ == '__main__':
-    main()
+@timer()
+def grant(zipfile):
+    '''授权专利证书批量重命名'''
+    location = os.path.splitext(zipfile)[0]
+    xf(zipfile)
+    time.sleep(1)
+    dirs = [x for x in os.listdir(location) if x.startswith("144O")]
+    num = 0
+    for dir in dirs:
+        xml_file = os.path.join(location, f"{dir}\\list.xml")
+        if os.path.exists(xml_file):
+            info = read_xml(xml_file, "GBK")
+            if "专利证书" in info['TONGZHISMC']:
+                shortn_name = f"{info['SHENQINGH']}_{info['FAMINGMC']}_证书.pdf"
+                old_name = os.path.join(location,f"{dir}\\" + f"{dir[:-2]}\\" *2 + f"{dir[:-2]}.pdf")
+                shutil.move(old_name,location)
+                fn_name = os.path.join(location, f"{dir[:-2]}.pdf")
+                time.sleep(0.5) if os.path.exists(fn_name) else None
+                nw_name = os.path.join(location,shortn_name)
+                os.rename(fn_name,nw_name)
+                num += 1
+    [shutil.rmtree(os.path.join(location,x)) for x in dirs]
+    os.system("start %s" % location)
+    return location, num
+
+
+def main():
+    zipfile = input("输入导出zip文件路径：").strip()
+    # appy(zipfile)  # 申请文件归档
+    grant(zipfile) # 证书文件归档
