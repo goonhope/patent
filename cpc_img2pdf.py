@@ -4,8 +4,8 @@ from lxml import etree as et
 
 '''
 @FileName	:   cpc_img2pdf.py
-@Created  :   Oct,2018
-@Created  :   May,2020
+@Created    :   Oct,2018
+@Update     :   May,2020
 @Author		:   goonhope@gmail.com
 @Function	:   专利申请中间文件批量归档，xml to list
 '''
