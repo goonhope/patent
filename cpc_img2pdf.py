@@ -138,6 +138,9 @@ def filed(location, source=True):
                     old_file = os.path.join(sub_dir, sub_f)
                     appendix = ".pdf" if "证书" in notice_name else f"_{sub_f[-6:]}"
                     new_sub_f = f"{app_id}_{invt_name}_{notice_name}" + appendix
+                    new_sub_f = new_sub_f.replace("第N次", "第1次") if "第N次" in new_sub_f else new_sub_f
+                    fnum = len(get_files(location,iname=new_sub_f,ext="tif"))  # 计算已有数量
+                    new_sub_f = new_sub_f.replace("第1次",f"第{fnum + 1}次") if num and "第1次" in new_sub_f else new_sub_f
                     new_file = os.path.join(location, new_sub_f)
                     os.renames(old_file,new_file)
                     time.sleep(1)
@@ -167,9 +170,9 @@ def filed(location, source=True):
     return location, num
 
 
-def get_files(path,ext=("tif","tiff","pdf")):
+def get_files(path,ext=("tif","tiff","pdf"),iname=""):
     """获取pdf 、tif文件"""
-    files = [x for x in os.listdir(path) if x.split(".")[-1].lower() in ext]
+    files = [x for x in os.listdir(path) if x.split(".")[-1].lower() in ext and iname in x]
     return files
 
 
