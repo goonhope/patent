@@ -19,7 +19,7 @@ CPC附件图片处理成合格上传要求规格
 CPC附件图片处理成上传要求规格，与5功能一样
 
 7.CPC_install.bat
-cpc安装查询
+cpc安装及环境查询
 
 8.cpc_reg_replace.bat
 cpc组件注册及更新
