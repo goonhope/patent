@@ -1,26 +1,26 @@
 @echo off
-echo 文件放到cpc安装目录
+echo 鏂囦欢鏀惧埌cpc瀹夎鐩綍
 
-::获取文件目录
+::鑾峰彇鏂囦欢鐩綍
 set cpcdir=%~dp0
-set cpczipdir=%cpcdir:CPC客户端\=%
+set cpczipdir=%cpcdir:CPC瀹㈡埛绔痋=%
 for /f "tokens=*" %%i in ('dir  /b /s "%cpczipdir%"cpc.zip') do set cpczip=%%~fi
-set update=%cpcdir:CPC客户端\=E系统(EES)升级程序\update\updateSipo.exe%
+set update=%cpcdir:CPC瀹㈡埛绔痋=E绯荤粺(EES)鍗囩骇绋嬪簭\update\updateSipo.exe%
 echo %cpczipdir% %cpczip%
 pause
 
-::组件升级
+::缁勪欢鍗囩骇
 call "%update%"
 
-::判断winrar是否安装并替换CPC
+::鍒ゆ柇winrar鏄惁瀹夎骞舵浛鎹PC
 reg query HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\ | find /i "rar">nul 2>nul
 if %errorlevel% equ 0 (start winrar x "%cpczip%" /o+ ) else (echo replace manually)
 
-::注册组件
-cd %~dp0
-for %%i in (%~dp0*.ocx) do  regsvr32 "%%~fi"
+::娉ㄥ唽缁勪欢
+::cd %~dp0
+for %%i in (*.ocx) do  regsvr32 "%%~fi"
 echo regsvr32 /s gwssiSys.dll
 
-::错误时删除后台word进程
+::閿欒鏃跺垹闄ゅ悗鍙皐ord杩涚▼
 for /f "tokens=2 delims= " %%i in ('tasklist ^|find "winword" /i') do echo taskkill /pid %%i /f
 pause
