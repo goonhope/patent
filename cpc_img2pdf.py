@@ -197,7 +197,7 @@ def main():
         path = os.path.splitext(path)[0]
         filed(path)
     elif not os.path.exists(path):  # 新目录默认直接copy notices文件 到path文件
-        filed(path,True,mtime="20200515")
+        filed(path,True,mtime="20200515") # 通过mtime筛选时间以后的 通知书
     else:
         filed(path)  # 已解压目录
 
