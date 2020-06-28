@@ -64,26 +64,15 @@ def download(url, url_hrefs, path=""):
     ''''下载文件__url_hrefs为'''
     path = path if os.path.isdir(path) else r"D:\Temp"
     import urllib.request as req
+    from urllib.parse import urljoin
     opener = req.build_opener()  # urlretrieve add header
     opener.addheaders = [('User-Agent', fr.chrome())]
     req.install_opener(opener)
     urls_root = url[:url.rindex("/") + 1]
     for url_href, filename in url_hrefs:
         pathfile = os.path.join(path, filename)
-        if url_href[0:2] == r"./":  # 与网页同级目录
-            req.urlretrieve(urls_root + url_href.split("/")[-1], pathfile)
-        elif url_href[0] != "." and url_href[0:5] != urls_root[0:5]:  # 网页名下级目录
-            req.urlretrieve(urls_root + url_href, pathfile)
-        elif url_href[0:5] == urls_root[0:5]:  # 绝对目录
-            req.urlretrieve(url_href, pathfile)
-        elif url_href[0:3] == r"../":  # 多上级目录
-            cd = url_href.count('../')
-            url_road = url.replace("//", "##").split("/")
-            cd_num = len(url_road)
-            goal = "/".join(url_road[:cd_num - cd - 1]).replace("##", "//") + url_href[url_href.rfind("./") + 1:]
-            req.urlretrieve(goal, pathfile)
-        else:
-            pass
+        url_all = urljoin(url, url_href)
+        req.urlretrieve(url_all, pathfile)
     return True    
 
     
