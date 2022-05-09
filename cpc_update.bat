@@ -1,18 +1,18 @@
 @echo off
-title       =========CPCÒ»¼üÉı¼¶£¨winrar£©=========
+title       =========CPCä¸€é”®å‡çº§ï¼ˆwinrarï¼‰=========
 echo    =================================
-echo     ÌáÊ¾£ºÎÄ¼şĞè¿½±´µ½updatPackageÄ¿Â¼²¢¹ÜÀíÔ±ÔËĞĞ
+echo     æç¤ºï¼šæ–‡ä»¶éœ€æ‹·è´åˆ°updatPackageç›®å½•å¹¶ç®¡ç†å‘˜è¿è¡Œ
 echo    ==========goonhope@gmail.com=========
 
-::»ñÈ¡ÎÄ¼şÄ¿Â¼
+::è·å–æ–‡ä»¶ç›®å½•
 set root=%~dp0
-set cpc="C:\Program Files (x86)\gwssi\CPC¿Í»§¶Ë\"
+set cpc="C:\Program Files (x86)\gwssi\CPCå®¢æˆ·ç«¯\"
 cd %root%
 
-::ÅĞ¶ÏÄ¿Â¼¸üĞÂ
+::åˆ¤æ–­ç›®å½•æ›´æ–°
 echo %root% | find "updatpackage" /i >nul 2>nul
 if %errorlevel% equ 0 (
-for %%i in (*.zip) do ( echo winrar x %%i %cpc% /o+ || echo 7z x -y %%i -o%cpc% || echo @info:  ÎŞ½âÑ¹Èí¼ş )
-for %%i in (*.exe) do echo call %%i) else (echo ÎÄ¼ş²»ÔÚupdatPackageÄ¿Â¼)
+for %%i in (*.zip) do ( echo winrar x %%i %cpc% /o+ || echo 7z x -y %%i -o%cpc% || echo @info:  æ— è§£å‹è½¯ä»¶ )
+for %%i in (*.exe) do echo call %%i) else (echo @info: æ‹·è´åˆ°updatPackageç›®å½•åœ¨è¿è¡Œ)
 
 pause
