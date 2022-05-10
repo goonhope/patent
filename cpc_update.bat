@@ -6,9 +6,11 @@ echo    ===============goonhope@gmail.com====================
 ::获取目录
 set root=%~dp0
 set cpc="C:\Program Files (x86)\gwssi\CPC客户端\"
-cd %root%
+set oldpath=%PATH%
+PATH %PATH%;"C:\Program Files\WinRAR";"C:\Program Files\7-Zip"
 
 ::判断更新 if %errorlevel% equ 0
+cd %root%
 echo %root% | find "updatpackage" /i >nul 2>nul && (
 for %%i in (*.zip) do (winrar x %%i %cpc% /o+ ||7z x -y %%i -o%cpc% || echo @info:  无解压软件 )
 for %%i in (*.exe) do call %%i
