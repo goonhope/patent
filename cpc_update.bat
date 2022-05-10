@@ -7,7 +7,7 @@ echo    ===============goonhope@gmail.com====================
 set root=%~dp0
 set cpc="C:\Program Files (x86)\gwssi\CPC客户端\"
 set oldpath=%PATH%
-PATH %PATH%;"C:\Program Files\WinRAR";"C:\Program Files\7-Zip"
+echo %PATH% | find "winrar" /i >nul || PATH %PATH%;"C:\Program Files\WinRAR";"C:\Program Files\7-Zip"
 
 ::判断更新 if %errorlevel% equ 0
 cd %root%
