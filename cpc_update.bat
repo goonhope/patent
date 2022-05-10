@@ -12,6 +12,6 @@ cd %root%
 echo %root% | find "updatpackage" /i >nul 2>nul
 if %errorlevel% equ 0 (
 for %%i in (*.zip) do (winrar x %%i %cpc% /o+ ||7z x -y %%i -o%cpc% || echo @info:  无解压软件 )
-for %%i in (*.exe) do echo call %%i) else (echo @info: 拷贝到updatPackage目录在运行)
+for %%i in (*.exe) do call %%i) else (echo @info: 拷贝到updatPackage目录在运行)
 
 pause
