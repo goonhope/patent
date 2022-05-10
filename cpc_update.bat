@@ -1,8 +1,7 @@
 @echo off
-title       =========CPC一键升级（winrar）=========
-echo    =================================
-echo     提示：文件需拷贝到updatPackage目录并管理员运行
-echo    ==========goonhope@gmail.com=========
+echo    =====================CPC一键升级======================
+echo          提示：文件需拷贝到updatPackage目录并管理员运行
+echo    ===============goonhope@gmail.com====================
 
 ::获取文件目录
 set root=%~dp0
