@@ -21,3 +21,9 @@ pause
 cd %cpc%
 for %%i in (*.ocx gwssiSys.dll) do regsvr32 /s %%i
 pause
+
+::赋权运行
+::(cacls %cpc% /e /g users:f
+attrib %cpc%* -s -h -r /s
+cd %root:updatPackage=%
+call OffLineUpdate.exe)
