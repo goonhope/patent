@@ -1,20 +1,22 @@
 @echo off
-title       =========CPCÒ»¼üÉı¼¶£¨Ö±½Ó£©=========
-echo     ÌáÊ¾£ºÎÄ¼şĞè¿½±´µ½¸üĞÂ°üÄ¿Â¼²¢¹ÜÀíÔ±ÔËĞĞ
-echo    ==========goonhope@qq.com==========
+title   ===========CPCä¸€é”®å‡çº§ï¼ˆç›´æ¥ï¼‰==========
+echo     æç¤ºï¼šæ–‡ä»¶éœ€æ‹·è´åˆ°æ›´æ–°åŒ…ç›®å½•å¹¶ç®¡ç†å‘˜è¿è¡Œ
+echo    ============goonhope@qq.com===========
 
-::»ñÈ¡Ä¿Â¼
+::è·å–ç›®å½•
 set root=%~dp0
-set cpc="C:\Program Files (x86)\gwssi\CPC¿Í»§¶Ë\"
+set cpc="C:\Program Files (x86)\gwssi\CPCå®¢æˆ·ç«¯\"
+set cpca=%cpc:ç«¯\=ç«¯\*%
+set cpcc=%cpc:ç«¯\=ç«¯\Conversion%
 
-::¸³È¨¸üĞÂ
+::èµ‹æƒæ›´æ–°
 cacls %cpc% /e /g users:f
-attrib %cpc%* -s -h -r /s
-::rd /s /q "%cpc%Conversion"
+attrib %cpca% -s -h -r /s
+::rd /s /q cpcc
 cd %root%
 call OffLineUpdate.exe
 
-::×¢²á×é¼ş
+::æ³¨å†Œç»„ä»¶
 cd %cpc%
 for %%i in (*.ocx gwssiSys.dll) do regsvr32 /s %%i
 pause
