@@ -10,7 +10,7 @@ set cpca=%cpc:端\=端\*%
 set cpcc=%cpc:端\=端\Conversion%
 
 ::赋权更新
-cacls %cpc% /e /g users:f
+cacls %cpc% /e /g %username%:f
 attrib %cpca% -s -h -r /s
 ::rd /s /q cpcc
 cd %root%
