@@ -6,13 +6,11 @@ echo    ============goonhope@qq.com===========
 ::获取目录
 set root=%~dp0
 set cpc="C:\Program Files (x86)\gwssi\CPC客户端\"
-set cpca=%cpc:端\=端\*%
-set cpcc=%cpc:端\=端\Conversion%
 
 ::赋权更新
 cacls %cpc% /e /g %username%:f
-attrib %cpca% -s -h -r /s
-::rd /s /q cpcc
+attrib %cpc% -s -h -r /s
+::rd /s /q %cpc%Conversion
 cd %root%
 call OffLineUpdate.exe
 
