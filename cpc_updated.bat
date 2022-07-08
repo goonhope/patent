@@ -9,7 +9,7 @@ set cpc="C:\Program Files (x86)\gwssi\CPC客户端\"
 
 ::赋权更新
 cacls %cpc% /e /g %username%:f
-attrib %cpc% -s -h -r /s
+attrib %cpc%* -s -h -r /s
 ::rd /s /q %cpc%Conversion
 cd %root%
 call OffLineUpdate.exe
