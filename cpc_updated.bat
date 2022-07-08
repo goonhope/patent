@@ -8,7 +8,7 @@ set root=%~dp0
 set cpc="C:\Program Files (x86)\gwssi\CPC客户端\"
 
 ::赋权更新
-cacls %cpc% /e /g %username%:f
+cacls %cpc% /e /g Users:f
 attrib %cpc%* -s -h -r /s
 ::rd /s /q %cpc%Conversion
 cd %root%
