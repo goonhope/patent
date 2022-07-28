@@ -1,5 +1,13 @@
 # -*- coding: utf-8 -*-
 '''
+@Filename	:	${NAME}
+@Created	:	${DATE}${TIME}
+@Updated	:	${DATE}${TIME}
+@Author		:	Teddygoonhope@gmail.comZhuhai
+@Function	:	功能
+@notes		:	备注
+@reference	:	引用
+
 @FileName	:   cpc_appendix.py
 @Created  :   2019/04/30
 @Updated  :   2019/04/30
